@@ -10,12 +10,10 @@ int main(int argc, char **argv)
 		return 0;
 	} catch (parser::ParserException e) {
 		std::cout << e.what() << std::endl;
-		return 1;
 	} catch (std::filesystem::filesystem_error e) {
 		std::cout << e.what() << std::endl;
-		return 1;
 	} catch (std::exception e) {
 		std::cout << e.what() << std::endl;
-		return 1;
 	}
+	return 1;
 }

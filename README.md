@@ -24,5 +24,5 @@ I have also attempted to implement this in other languages:
 - [Go](https://github.com/aosasona/go.rs)
 
 ## Todo
-- [ ] Implement `-a` option
+- [x] Implement `-a` option
 - [ ] Implement `-l` option

@@ -4,7 +4,18 @@
 
 #include "reader.hpp"
 
+#define str std::string
+
 namespace fs = std::filesystem;
+
+struct colors {
+	str reset = "\033[0m";
+	str red = "\033[31m";
+	str green = "\033[32m";
+	str yellow = "\033[33m";
+	str blue = "\033[34m";
+	str cyan = "\033[36m";
+};
 
 namespace reader {
 
@@ -54,9 +65,30 @@ void print_normal(std::vector<file_entry> files)
 {
 	std::string text;
 
-	for (auto file : files) { text += file.base_name + "\n"; }
+	for (auto file : files) {
+		str file_text = "";
 
-	std::cout << text;
+		if (file.is_dir()) {
+			file_text = with_color(file.base_name, colors().cyan);
+		} else if (file.is_symlink()) {
+			file_text = with_color(file.base_name, colors().blue);
+		} else if (file.is_binary()) {
+			file_text = with_color(file.base_name, colors().red);
+		} else if (file.is_unknown()) {
+			file_text = with_color(file.base_name, colors().yellow);
+		} else {
+			file_text = file.base_name;
+		}
+
+		text += file_text + "\t";
+	}
+
+	std::cout << text << std::endl;
+}
+
+str with_color(str text, str color)
+{
+	return color + text + colors().reset;
 }
 
 }  // namespace reader
