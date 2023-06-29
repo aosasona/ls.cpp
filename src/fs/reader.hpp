@@ -39,25 +39,19 @@ struct file_entry {
 
 	bool is_binary()
 	{
-
 		std::ifstream file(path, std::ios::binary);
 		if (!file.is_open()) { return false; }
 
-		const int bufferSize = 1024;
-		std::vector<char> buffer(bufferSize);
-
-		// Read a portion of the file into the buffer
-		file.read(buffer.data(), bufferSize);
-
-		// Check for non-printable characters in the buffer
-		for (char ch : buffer) {
-			if (ch < 7 || (ch > 13 && ch < 32)) {
-				file.close();
-				return true;  // File contains non-printable characters, indicating binary content
-			}
-		}
+		// Read the first byte from the file without advancing the file pointer
+		char firstByte = file.peek();
 
 		file.close();
+
+		// Check if the first byte has the high bit set, indicating binary content
+		if ((firstByte & 0x80) != 0) {
+			return true;  // File has the high bit set, indicating binary content
+		}
+
 		return false;
 	}
 };
