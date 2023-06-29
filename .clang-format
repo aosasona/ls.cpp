@@ -1,0 +1,18 @@
+{
+    "BasedOnStyle": "LLVM",
+    "IndentWidth": 4,
+    "TabWidth": 4,
+    "UseTab": true,
+    "BreakBeforeBraces": "WebKit",
+    "BreakConstructorInitializersBeforeComma": false,
+    "ColumnLimit": 120,
+    "AllowShortBlocksOnASingleLine": true,
+    "AllowShortCaseLabelsOnASingleLine": true,
+    "AllowShortFunctionsOnASingleLine": "Empty",
+    "AllowShortLambdasOnASingleLine": true,
+    "ConstructorInitializerAllOnOneLineOrOnePerLine": true,
+	"AllowShortIfStatementsOnASingleLine": true,
+	"AllowShortLoopsOnASingleLine": true,
+    "SpacesBeforeTrailingComments": 2,
+    "Standard": "c++20"
+}
